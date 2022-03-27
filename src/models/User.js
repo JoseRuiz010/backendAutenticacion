@@ -8,15 +8,15 @@ const userSchema = mongoose.Schema({
         type: String,
         unique: true
     },
-    email:{
-        type:String,
+    email: {
+        type: String,
         unique: true
     },
-    password:{
+    password: {
         type: String,
         required: true
     },
-    roles:[{
+    roles: [{
         ref: 'Rol',
         type: mongoose.Schema.Types.ObjectId
     }]
@@ -25,14 +25,14 @@ const userSchema = mongoose.Schema({
     versionKey: false
 })
 
-userSchema.statics.encryptpassword=async(password)=>{
+userSchema.statics.encryptpassword = async (password) => {
     const salt = await bcrypt.genSaltSync(10);
     return await bcrypt.hashSync(password, salt);
-     
+
 }
 
-userSchema.statics.comperPassword=async(password,receivePassword)=>{
-   return await bcrypt.compareSync(receivePassword, password); 
+userSchema.statics.comperPassword = async (receivePassword, password) => {
+    return await bcrypt.compareSync(receivePassword, password);
 }
 
 
