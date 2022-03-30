@@ -10,7 +10,7 @@ const singIn = async (req, res) => {
     const userFound = (modelUser.find({ email }))
 
     const newUser = new modelUser({ userName, email, "password": await modelUser.encryptpassword(password) });
-
+    
 
     if (roles.length > 0) {
         console.log(roles);

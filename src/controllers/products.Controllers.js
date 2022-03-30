@@ -5,7 +5,8 @@ const createProducts=async(req,res)=>{
         name:req.body.name,
         category: req.body.category,
         price:req.body.price,
-        imgUrl:req.body.imgUrl
+        imgUrl:req.body.imgUrl,
+        user:req.body.user
     })
     
     const productSave=await newProduct.save()
@@ -24,6 +25,14 @@ const getProductsById=async(req,res)=>{
     const product= await productSchema.findById(req.params.productId);
     res.status(200).json(product)
 }
+const getProductsByUser=async(req,res)=>{
+    const {userId}= req.params
+    console.log(userId);
+   // res.json(userId);
+    const product= await productSchema.find({user:userId});
+    res.status(200).json(product)
+}
+
 const updateProducts=async(req,res)=>{
     const product= await productSchema.findByIdAndUpdate(req.params.productId, req.body,{
         new:true
@@ -35,5 +44,5 @@ const deleteProductById=async(req,res)=>{
     res.status(204).json(product); 
 }
 
-module.exports= {createProducts,getProducts,getProductsById,updateProducts,deleteProductById}
+module.exports= {createProducts,getProducts,getProductsById,updateProducts,deleteProductById,getProductsByUser}
 
