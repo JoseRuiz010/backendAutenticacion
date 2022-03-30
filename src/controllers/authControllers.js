@@ -26,7 +26,7 @@ const singIn = async (req, res) => {
         expiresIn: 86400
     })
     console.log(newUser);
-    res.status(200).json({ token })
+    res.status(200).json({ token, newUser})
 
 
 
@@ -46,9 +46,10 @@ const singUp = async (req, res) => {
         const token = jwt.sign({ id: user._id, }, config.secret, {
             expiresIn: 86400
         })
-        return res.json({ token })
+        return res.json({ token,user})
     }
     res.status(400).json({ messaje: 'El usuario no fue encontrado' })
 }
 
 module.exports = { singIn, singUp }
+
