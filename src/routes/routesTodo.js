@@ -8,6 +8,6 @@ router.get('/', productsCtl.getProducts)
 router.get('/:productId', productsCtl.getProductsById)
 router.get('/productByUser/:userId', productsCtl.getProductsByUser)
 router.put('/:productId', verificarToken, productsCtl.updateProducts)
-router.delete('/:productId', verificarToken, productsCtl.deleteProductById)
+router.delete('/:productId', productsCtl.deleteProductById)
 
 module.exports = router
